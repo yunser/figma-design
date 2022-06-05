@@ -1,4 +1,7 @@
+console.log('aaaa', 'aaa2')
 import Color from 'color'
+
+const namespace = 'yunser.component'
 
 const padding_x = 32
 const padding_y = 32
@@ -31,13 +34,18 @@ figma.ui.onmessage = msg => {
     }
     else if (msg.type === 'setData') {
         console.log('111')
-        const select0 = figma.currentPage.children[0]
-        select0.setRelaunchData({ edit: 'Edit this trapezoid with Shaper', open: '' })
-        // select0.setRelaunchData({
-        //     hello: 'hello223',
-        // })
-        select0.setPluginData('pData', 'pppDatata')
-        select0.setSharedPluginData('yunser', 'ppppDta', 'ppppDta')
+        const fNode = figma.currentPage.findChildren(node => {
+            const data = node.getSharedPluginData('yunser.component', 'type')
+            return data == 'button'
+        })
+        console.log('fNode', fNode)
+        // const select0 = figma.currentPage.children[0]
+        // select0.setRelaunchData({ edit: 'Edit this trapezoid with Shaper', open: '' })
+        // // select0.setRelaunchData({
+        // //     hello: 'hello223',
+        // // })
+        // select0.setPluginData('pData', 'pppDatata')
+        // select0.setSharedPluginData('yunser', 'ppppDta', 'ppppDta')
     }
     // Make sure to close the plugin when you're done. Otherwise the plugin will
     // keep running, which shows the cancel button at the bottom of the screen.
@@ -71,6 +79,37 @@ function create(type = 'filled_button') {
     else {
         nodeParent = figma.currentPage
     }
+
+
+    function findNode(node, cb) {
+        if (cb(node)) {
+            return node
+        }
+        if (node.children?.length) {
+            for (let child of node.children) {
+                let n = findNode(child, cb)
+                if (n) {
+                    return n
+                }
+            }
+        }
+        return null
+    }
+
+    const fNode = findNode(figma.currentPage, node => {
+        const data = node.getSharedPluginData(namespace, 'type')
+        return data == type
+    })
+
+    console.log('fNode', fNode)
+    if (fNode) {
+        console.log('复制就行')
+        const component = fNode as ComponentNode
+        const instance = component.createInstance()
+        nodeParent.appendChild(instance)
+        return
+    }
+    console.log('创建')
 
     const button = figma.createComponent()
     button.layoutMode = 'HORIZONTAL'
@@ -129,22 +168,29 @@ function create(type = 'filled_button') {
             // })
 
             button.appendChild(text)
+            button.setSharedPluginData(namespace, 'type', type)
+
+            nodeParent.appendChild(button)
+
+            // const button2 = button.createInstance()
+            // button2.x = 100
+            // nodeParent.appendChild(button2)
         })
 
 
-    nodeParent.appendChild(button)
+    
     // if (selection.length == 1) {
     // }
 }
 
 // create('filled_button')
 
-const select0 = figma.currentPage.children[0]
-if (select0?.type == 'FRAME') {
-    for (let child of select0.children) {
-        child.remove()
-    }
-}
+// const select0 = figma.currentPage.children[0]
+// if (select0?.type == 'FRAME') {
+//     for (let child of select0.children) {
+//         child.remove()
+//     }
+// }
 
 
 // create('outlined_button')

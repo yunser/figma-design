@@ -76,14 +76,15 @@ const App = () => {
                 )
             })}
 
-            {/* <button className=""
+            <button className=""
                 onClick={() => {
                     console.log('figma', window.figma)
                     figma.exec('setData', {}, () => {
 
                     })
                 }}
-            >test</button> */}
+            >test2</button>
+            2
             
             {/* <img src={buttonImg} /> */}
         </div>
