@@ -1,5 +1,5 @@
 {
-  "name": "figma-plugin-template",
+  "name": "figma-section-plugin",
   "version": "0.0.1",
   "license": "MIT",
   "author": "Pengsha Ying <yingfusheng@foxmail.com>",
@@ -31,11 +31,12 @@
     "postinstall": "npm run build"
   },
   "dependencies": {
+    "color": "^4.2.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@figma/plugin-typings": "^1.39.1",
+    "@figma/plugin-typings": "^1.47.0",
     "@types/fs-extra": "^9.0.13",
     "@types/lodash-es": "^4.17.5",
     "@types/node": "^16.10.2",

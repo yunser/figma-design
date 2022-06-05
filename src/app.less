@@ -1,3 +1,69 @@
-.name {
-    color: #09c;
+.figma-dark body {
+    // --color-text: #fff;
+    color: #fff;
+}
+.figma-light body {
+    // --color-text: #000;
+    color: #000;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    padding: 16px;
+}
+// .name {
+//     font-weight: bold;
+//     font-size: 24px;
+//     // color: #000;
+//     margin-bottom: 16px;
+// }
+.colors {
+    display: flex;
+    // justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+    .item {
+        width: 32px;
+        height: 32px;
+        // margin-right: 8px;
+        // margin-bottom: 8px;
+        border: 2px solid #000;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+}
+button {
+    width: 100%;
+    border-radius: 2px;
+    color: #fff;
+    background-color: #3d66e4;
+    border: none;
+    padding: 8px 15px;
+    /* margin: 0 5px; */
+    /* box-shadow: inset 0 0 0 1px black; */
+    outline: none;
+    cursor: pointer;
+}
+
+
+.list {
+    .item {
+        height: 48px;
+        border: 1px solid #FF696E;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        &:hover {
+            background-color: #f1f1f1;
+        }
+    }
+    .name {
+        
+    }
 }
